@@ -12,7 +12,7 @@ class Admin::RoomsController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @room = Room.find(params[:id])
   end
 
   def create
@@ -39,7 +39,7 @@ class Admin::RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @room.destroy
 
-    redirect_to rooms_path
+    redirect_to [:admin, @room]
   end
 
   private
