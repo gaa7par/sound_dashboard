@@ -23,7 +23,13 @@ default: &default
 
 development:
   <<: *default
+  adapter: postgresql
   database: sound_dashboard_development
+  encoding: unicode
+  host: localhost
+  min_messages: warning
+  pool: 2
+  timeout: 5000
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
