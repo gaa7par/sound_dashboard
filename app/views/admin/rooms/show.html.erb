@@ -4,7 +4,13 @@
   <%= @room.name %>
 </p>
 
-<%= render @room.recorders %>
+<% @recorders.each do |recorder| %>
+  <p>
+    <strong>Recorder:</strong>
+    <%= recorder.name %>
+    <%= link_to 'Delete', admin_room_recorder_path(@room, recorder), method: :delete %>
+  </p>
+<% end %>
 
 <h2>Add recorders</h2>
 <%= render 'admin/recorders/form' %>
