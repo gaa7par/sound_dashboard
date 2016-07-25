@@ -5,6 +5,7 @@ class Admin::RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @recorder = @room.recorders.new
   end
 
   def new

@@ -1,7 +1,23 @@
+<h1>Room</h1>
 <p>
   <strong>Name:</strong>
   <%= @room.name %>
 </p>
+
+<% @room.recorders.each do |recorder| %>
+  <p>
+    <strong>Recorder:</strong>
+    <%= recorder.name %>
+  </p>
+<% end %>
+
+<h2>Add recorders</h2>
+  <%= simple_form_for [:admin, @room, @recorder] do |f| %>
+    <p>
+      <%= f.input :name %>
+      <%= f.button :submit %>
+    </p>
+  <% end %>
 
 <%= link_to 'Edit', edit_admin_room_path %>
 <%= link_to 'Back', admin_rooms_path %>
