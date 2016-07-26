@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admins/new'
+
   devise_for :admins
   root 'home#index'
 
@@ -7,4 +9,6 @@ Rails.application.routes.draw do
       resources :recorders
     end
   end
+
+  resources :admins
 end

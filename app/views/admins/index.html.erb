@@ -1,0 +1,15 @@
+<h1>Sound Dashboard</h1>
+<h2>Admins</h2>
+
+<ul>
+  <% @admins.each do |admin| %>
+    <li>
+      <%= admin.email %>
+      <%= link_to 'Show', admin_path(admin) %>
+      <%= link_to 'Edit', edit_admin_path(admin) %>
+      <%= link_to 'Delete', admin_path(admin), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'New', new_admin_path(@admin) %>
