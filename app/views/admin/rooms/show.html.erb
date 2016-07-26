@@ -4,6 +4,8 @@
   <%= @room.name %>
 </p>
 
+<%= link_to 'Edit', edit_admin_room_path %>
+
 <% @recorders.each do |recorder| %>
   <p>
     <strong>Recorder:</strong>
@@ -15,5 +17,4 @@
 <h2>Add recorders</h2>
 <%= render 'admin/recorders/form' %>
 
-<%= link_to 'Edit', edit_admin_room_path %>
 <%= link_to 'Back', admin_rooms_path %>
