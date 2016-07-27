@@ -5,6 +5,6 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def active_for_authentication?
-    super
+    true
   end
 end
