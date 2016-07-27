@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  measure: 1
+  time: 2016-07-27 12:51:25
+  recorder: one
+
+two:
+  measure: 1
+  time: 2016-07-27 12:51:25
+  recorder: two
