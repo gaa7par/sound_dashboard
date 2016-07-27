@@ -1,13 +1,4 @@
 <%= simple_form_for [:admin, @room] do |f| %>
-  <% if @room.errors.any? %>
-    <strong><%= pluralize(@room.errors.count, "error") %> found:</strong>
-    <ul>
-      <% @room.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  
   <%= f.input :name %>
   <%= f.button :submit %>
 <% end %>
