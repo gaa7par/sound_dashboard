@@ -1,15 +1,16 @@
 <h1>Sound Dashboard</h1>
 <h2>Rooms</h2>
 
-<% @rooms.each do |room| %>
 <ul>
-  <li>
-    <%= room.name %>
-    <%= link_to 'Show', admin_room_path(room) %>
-    <%= link_to 'Edit', edit_admin_room_path(room) %>
-    <%= link_to 'Delete', admin_room_path(room), method: :delete %>
-  </li>
+  <% @rooms.each do |room| %>
+    <li>
+      <%= room.name %>
+      <%= link_to 'Show', admin_room_path(room) %>
+      <%= link_to 'Edit', edit_admin_room_path(room) %>
+      <%= link_to 'Delete', admin_room_path(room), method: :delete %>
+    </li>
+  <% end %>
 </ul>
-<% end %>
 
-<%= link_to 'New', new_admin_room_path(@room) %>
+<%= link_to 'New room', new_admin_room_path(@room) %>
+<%= link_to 'Admins', admins_path %>
