@@ -1,23 +1,26 @@
 Admin.create!(email: "admin@example.com",
   password: "admin1", password_confirmation: "admin1")
 
-Room.create!(name: "Master Builders")
-Room.create!(name: "Other Room")
-Room.create!(name: "Yet Another")
+names = ["Master Builders", "Other Room", "Yet Another"]
 
+date = [2016, 07, 27]
+period = 5
 
+names.each do |name|
+  unless Room.find_by(name: name)
+    room = Room.create(name: name)
 
-(1..3).each do |room_id|
-  (1..3).each do |n|
-    Recorder.create!(name: "#{room_id}.#{n}", room_id: room_id)
-  end
-end
+    (1..3).each do |number|
+      recorder = room.recorders.create(name: "#{room.id}.#{number}")
 
-(1..9).each do |recorder_id|
-  (10..18).each do |n|
-    measure = rand(10)
-    time = Time.new(2016, 07, 27, n, 0, 0, "+02:00")
-
-    Measurement.create!(measure: measure, time: time, recorder_id: recorder_id)
+      (8..15).each do |hour|
+        (0..59).each do |minute|
+          if minute % period == 0
+            time = Time.new(*date, hour, minute)
+            recorder.measurements.create!(measure: rand(11), time: time)
+          end
+        end
+      end
+    end
   end
 end
