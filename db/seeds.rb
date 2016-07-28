@@ -1,4 +1,4 @@
-Admin.create!(email: "admin@sound_dashboard.com",
+Admin.create!(email: "admin@example.com",
   password: "admin1", password_confirmation: "admin1")
 
 Room.create!(name: "Master Builders")
@@ -14,9 +14,9 @@ Room.create!(name: "Yet Another")
 end
 
 (1..9).each do |recorder_id|
-  (8..16).each do |n|
+  (10..18).each do |n|
     measure = rand(10)
-    time = Time.new(2016, 07, 27, n, 0, 0)
+    time = Time.new(2016, 07, 27, n, 0, 0, "+02:00")
 
     Measurement.create!(measure: measure, time: time, recorder_id: recorder_id)
   end
