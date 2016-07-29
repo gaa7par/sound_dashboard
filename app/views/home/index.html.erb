@@ -4,7 +4,7 @@
   <h2><%= room.name %></h2>
   <% room.recorders.each do |recorder| %>
     <h3><%= recorder.name %></h3>
-    <% recorder.measurements.each do |measurement| %>
+    <% recorder.measurements.by_created_at.each do |measurement| %>
       <p><strong><%= measurement.measure %></strong> at <%= measurement.time %></p>
     <% end %>
   <% end %>
