@@ -1,13 +1,68 @@
 <h1>Sound Dashboard</h1>
 
+<script>
+$(function () {
+  $('#container').highcharts({
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: "Rooms"
+    },
+    xAxis: {
+      allowDecimals: false,
+      labels: {
+        formatter: function () {
+          return this.value;
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'decibels'
+      },
+      labels: {
+        formatter: function () {
+          return this.value * 10;
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '{point.y}'
+
+    },
+    plotOptions: {
+      area: {
+        pointStart: 8.00,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    series: [{
+      name: "<%= @rooms.first.name %>",
+      data: [2, 5, 3, 6, 7, 9, 8, 6, 4]
+    }, {
+      name: "<%= @rooms.second.name%>",
+      data: [4, 6, 5, 5, 6, 7, 4, 3, 2]
+    }, {
+      name: "<%= @rooms.third.name%>",
+      data: [2, 4, 3, 4, 6, 5, 4, 2, 1]
+    }]
+  });
+});
+</script>
+
+<div id="container"></div>
 <% @rooms.each do |room| %>
-  <h2><%= room.name %></h2>
-  <% room.recorders.each do |recorder| %>
-    <h3><%= recorder.name %></h3>
-    <% recorder.measurements.by_created_at.each do |measurement| %>
-      <p><strong><%= measurement.measure %></strong> at <%= measurement.time %></p>
-    <% end %>
-  <% end %>
+
 <% end %>
 
-<%= link_to 'Enter', admin_rooms_path %>
+<%= link_to 'Sign in', admin_rooms_path %>
