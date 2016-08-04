@@ -48,13 +48,13 @@ $(function () {
 
     series: [{
       name: "<%= Room.first.name %>",
-      data: "<%= Room.first.measures_for_current_day_chart %>"
+      data: <%= Room.first.measures_for_current_day_chart %>
     }, {
       name: "<%= Room.second.name %>",
-      data: "<%= Room.second.measures_for_current_day_chart %>"
+      data: <%= Room.second.measures_for_current_day_chart %>
     }, {
       name: "<%= Room.third.name %>",
-      data: "<%= Room.third.measures_for_current_day_chart %>"
+      data: <%= Room.third.measures_for_current_day_chart %>
     }],
 
       navigation: {
