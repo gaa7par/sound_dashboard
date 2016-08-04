@@ -1,6 +1,7 @@
 Admin.create!(email: "admin@example.com", password: "admin1", password_confirmation: "admin1")
 
-DATE = [2016, 8, 5]
+DATES = [[2016, 8, 4], [2016, 8, 5], [2016, 8, 8], [2016, 8, 9], [2016, 8, 10], [2016, 8, 11], [2016, 8, 12]]
+DAYS = DATES.count
 PERIOD = 5
 
 names = ["Master Builders", "Other Room", "Yet Another"]
@@ -29,20 +30,33 @@ def add_recorders(room)
   (1..3).each do |number|
     recorder = room.recorders.create(name: "#{room.id}.#{number}")
     add_measurements(recorder)
-
-    time = Time.new(*DATE, 16)
-    recorder.measurements.create!(measure: random, time: time)
   end
 end
 
-def add_measurements(recorder)
+def add_measurements(recorder, day = 0)
   (8..15).each do |hour|
     minute = 0
 
     while minute < 60
-      time = Time.new(*DATE, hour, minute)
+      time = Time.new(*DATES[day], hour, minute)
       recorder.measurements.create!(measure: random, time: time)
       minute += PERIOD
+    end
+
+    time = Time.new(*DATES[day], 16)
+    recorder.measurements.create!(measure: random, time: time)
+  end
+end
+
+rooms = Room.all
+
+rooms.each do |room|
+  room.recorders.each do |recorder|
+    day = 0
+
+    while day < DAYS
+      add_measurements(recorder, day)
+      day += 1
     end
   end
 end
