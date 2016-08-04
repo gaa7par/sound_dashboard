@@ -1,6 +1,6 @@
 Admin.create!(email: "admin@example.com", password: "admin1", password_confirmation: "admin1")
 
-DATE = [2016, 07, 28]
+DATE = [2016, 8, 5]
 PERIOD = 5
 
 names = ["Master Builders", "Other Room", "Yet Another"]
