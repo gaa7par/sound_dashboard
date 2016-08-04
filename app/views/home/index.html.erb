@@ -1,71 +1,67 @@
 <h1>Sound Dashboard</h1>
 
-<script>
-$(function () {
-  $('#container').highcharts({
-    chart: {
-      type: 'spline'
-    },
+<% @rooms.each do |room| %>
+  <script>
+    $(function () {
+      $("#<%= room.id %>").highcharts({
+        chart: {
+          type: 'spline'
+        },
 
-    title: {
-      text: 'Rooms'
-    },
+        title: {
+          text: "<%= room.name %>"
+        },
 
-    xAxis: {
-      type: 'datetime',
-      labels: {
-        overflow: 'justify'
-      }
-    },
-
-    yAxis: {
-      title: {
-        text: 'decibels'
-      },
-    },
-
-    tooltip: {
-      valueSuffix: ' dB'
-    },
-
-    plotOptions: {
-      spline: {
-        lineWidth: 4,
-        states: {
-          hover: {
-            lineWidth: 5
+        xAxis: {
+          type: 'datetime',
+          labels: {
+            overflow: 'justify'
           }
         },
 
-        marker: {
-          enabled: false
+        yAxis: {
+          title: {
+            text: 'decibels'
+          },
         },
 
-        pointInterval: 300000, // five minutes
-        pointStart: Date.UTC(2016, 8, 3, 8, 0, 0)
-      }
-    },
+        tooltip: {
+          valueSuffix: ' dB'
+        },
 
-    series: [{
-      name: "<%= Room.first.name %>",
-      data: <%= Room.first.measures_for_current_day_chart %>
-    }, {
-      name: "<%= Room.second.name %>",
-      data: <%= Room.second.measures_for_current_day_chart %>
-    }, {
-      name: "<%= Room.third.name %>",
-      data: <%= Room.third.measures_for_current_day_chart %>
-    }],
+        plotOptions: {
+          spline: {
+            lineWidth: 4,
+            states: {
+              hover: {
+                lineWidth: 5
+              }
+            },
 
-      navigation: {
-        menuItemStyle: {
-          fontSize: '10px'
+            marker: {
+              enabled: false
+            },
+
+            pointInterval: 300000, // five minutes
+            pointStart: Date.UTC(2016, 8, 5, 8, 0, 0)
+          }
+        },
+
+        series: [{
+          name: "<%= room.name %>",
+          data: <%= room.measures_for_current_day_chart %>
+      }],
+
+        navigation: {
+          menuItemStyle: {
+            fontSize: '10px'
+          }
         }
-      }
-  });
-});
-</script>
+      });
+    });
+  </script>
 
-<div id="container"></div>
+  <div id="<%= room.id %>"></div>
+<% end %>
 
 <%= link_to 'Sign in', admin_rooms_path %>
