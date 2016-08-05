@@ -48,17 +48,20 @@ def add_measurements(recorder, day = 0)
   end
 end
 
-rooms = Room.all
+def add_more_days
+  rooms = Room.all
 
-rooms.each do |room|
-  room.recorders.each do |recorder|
-    day = 0
+  rooms.each do |room|
+    room.recorders.each do |recorder|
+      day = 0
 
-    while day < DAYS
-      add_measurements(recorder, day)
-      day += 1
+      while day < DAYS
+        add_measurements(recorder, day)
+        day += 1
+      end
     end
   end
 end
 
 add_rooms(names)
+add_more_days
