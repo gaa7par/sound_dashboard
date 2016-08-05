@@ -47,7 +47,7 @@
 
         series: [{
           name: "<%= room.name %>",
-          data: <%= room.measures_per_days_chart %>
+          data: <%= room.measures_per_days_chart(7) %>
       }],
 
         navigation: {

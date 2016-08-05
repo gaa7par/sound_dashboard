@@ -1,4 +1,8 @@
 <h1>Sound Dashboard</h1>
-<%= render 'chart' %>
+
+<%= link_to 'Yesterday', root_path(date: 'yesterday') %>
+<%= link_to 'Today', root_path(date: 'today') %>
+
+<%= render partial: 'day_chart', locals: { date: @date } %>
 
 <%= link_to 'Sign in', admin_rooms_path %>
