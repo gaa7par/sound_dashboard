@@ -4,9 +4,9 @@ class Room < ApplicationRecord
 
   PERIOD = 5
 
-  def measures_per_day_chart
+  def measures_per_days_chart(days = 1)
     measures = Hash.new(0)
-    measures_per_day = 8 * (60 / PERIOD) + 1 # 8 hours per day * PERIOD + 1
+    measures_per_days = (8 * days)  * (60 / PERIOD) + 1 # (8 hours per day * days)  * PERIOD + 1
     number_of_recorders = recorders.count
 
     recorders.each do |recorder|
@@ -16,6 +16,6 @@ class Room < ApplicationRecord
     end
 
     result = measures.values.map { |measure| measure / number_of_recorders }
-    result[0...measures_per_day]
+    result[0...measures_per_days]
   end
 end
