@@ -43,9 +43,9 @@ def add_measurements(recorder, day = 0)
       minute += PERIOD
     end
 
-    time = Time.new(*DATES[day], 16)
-    recorder.measurements.create!(measure: random, time: time)
   end
+  time = Time.new(*DATES[day], 16)
+  recorder.measurements.create!(measure: random, time: time)
 end
 
 def add_more_days

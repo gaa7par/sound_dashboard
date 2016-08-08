@@ -8,7 +8,7 @@ class Room < ApplicationRecord
           elsif date == 'yesterday'
             Date.yesterday
           else
-            date
+            Date.parse(date)
           end
 
     measures = Hash.new(0)
