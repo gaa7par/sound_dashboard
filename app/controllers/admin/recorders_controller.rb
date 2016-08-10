@@ -15,6 +15,6 @@ class Admin::RecordersController < ApplicationController
 
   private
   def recorder_params
-    params.require(:recorder).permit(:name)
+    params.require(:recorder).permit(:name, :position_x, :position_y)
   end
 end

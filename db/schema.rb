@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160727105125) do
 
   create_table "recorders", force: :cascade do |t|
     t.string   "name"
+    t.float    "position_x"
+    t.float    "position_y"
     t.integer  "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,8 +53,10 @@ ActiveRecord::Schema.define(version: 20160727105125) do
 
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "dimension_x"
+    t.float    "dimension_y"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "measurements", "recorders"

@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
   has_many :recorders, dependent: :destroy
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :dimension_x, :dimension_y, presence: true, numericality: { greater_than: 0 }
 
   def measures_per_days_chart(date = 'today')
     day = if date == 'today'

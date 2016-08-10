@@ -3,13 +3,17 @@
   <strong>Name:</strong>
   <%= @room.name %>
 </p>
+<p>
+  <strong>Dimensions:</strong>
+  <%= @room.dimension_x %>x<%= @room.dimension_y %>
+</p>
 
 <%= link_to 'Edit', edit_admin_room_path %>
 
 <% @recorders.each do |recorder| %>
   <p>
     <strong>Recorder:</strong>
-    <%= recorder.name %>
+    <%= recorder.name %> <%= recorder.position_x %>x<%= recorder.position_y %>
     <%= link_to 'Delete', admin_room_recorder_path(@room, recorder), method: :delete %>
   </p>
 <% end %>
