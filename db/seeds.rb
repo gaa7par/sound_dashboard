@@ -19,13 +19,13 @@ end
 
 def random_position(parent_dimension)
   position = rand(parent_dimension)
-  return position > 0 ? position : random_position(random_dimension)
+  return position > 0 ? position : random_position(parent_dimension)
 end
 
 def add_rooms(names)
   names.each do |name|
     unless Room.find_by(name: name)
-      room = Room.create(name: name, dimension_x: 9.00, dimension_y: 5.00)
+      room = Room.create(name: name, dimension_x: 30.0, dimension_y: 10.0)
       add_recorders(room)
     end
   end
