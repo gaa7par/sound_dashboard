@@ -22,4 +22,15 @@ class Room < ApplicationRecord
 
     measures.values.map { |measure| measure / recorders.count }
   end
+
+  def coordinates_per_room_chart
+    coordinates = Array.new
+
+    (0...dimension_x).each do |x|
+      (0...dimension_y).each do |y|
+        coordinates << [x, y, rand(10)]
+      end
+    end
+    coordinates
+  end
 end

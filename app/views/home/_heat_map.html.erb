@@ -1,18 +1,5 @@
 <% @rooms.each do |room| %>
   <script>
-    let randomData = function() {
-      let dimension_x = <%= room.dimension_x %>
-      let dimension_y = <%= room.dimension_y %>
-      let result = []
-
-      for (let x = 0; x <= dimension_x; x++)
-        for (let y = 0; y <= dimension_y; y++)
-          result.push([x, y, Math.round(Math.random() * 10)])
-      return result
-    }
-  </script>
-
-  <script>
     $(function () {
       $("#h<%= room.id %>").highcharts({
         chart: {
@@ -29,12 +16,12 @@
     },
 
     xAxis: {
-      categories: [1, 2, 3, 4, 5, 6]
+      categories: <%= (1..room.dimension_x).to_a %>
 
     },
 
     yAxis: {
-      categories: [1, 2, 3, 4],
+      categories: <%= (1..room.dimension_y).to_a %>,
       title: null
 
     },
@@ -67,7 +54,7 @@
     series: [{
       name: "#<%= room.name %>",
       borderWidth: 1,
-      data: randomData(),
+      data: <%= room.coordinates_per_room_chart %>,
       dataLabels: {
         enabled: true,
         color: '#000000'
