@@ -1,4 +1,6 @@
 <%= simple_form_for [:admin, @room, @recorder] do |f| %>
   <%= f.input :name %>
+  <%= f.input :position_x %>
+  <%= f.input :position_y %>
   <%= f.button :submit %>
 <% end %>

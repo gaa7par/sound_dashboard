@@ -49,6 +49,6 @@ class Admin::RoomsController < ApplicationController
 
   private
   def room_params
-    params.require(:room).permit(:name)
+    params.require(:room).permit(:name, :dimension_x, :dimension_y)
   end
 end

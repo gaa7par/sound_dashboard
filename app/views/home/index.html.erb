@@ -9,5 +9,6 @@
 <%= link_to 'Today', root_path(date: 'today') %>
 
 <%= render partial: 'day_chart', locals: { date: @date } %>
+<%= render 'heat_map' %>
 
 <%= link_to 'Sign in', admin_rooms_path %>

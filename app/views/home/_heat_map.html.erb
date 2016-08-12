@@ -1,0 +1,72 @@
+<% @rooms.each do |room| %>
+  <script>
+    $(function () {
+      $("#h<%= room.id %>").highcharts({
+        chart: {
+          type: 'heatmap',
+          marginTop: 40,
+          marginBottom: 80,
+          plotBorderWidth: 1
+
+        },
+
+        title: {
+      text: "<%= room.name %>"
+
+    },
+
+    xAxis: {
+      categories: <%= (1..room.dimension_x).to_a %>
+
+    },
+
+    yAxis: {
+      categories: <%= (1..room.dimension_y).to_a %>,
+      title: null
+
+    },
+
+    colorAxis: {
+      min: 0,
+      minColor: '#FFFFFF',
+      maxColor: Highcharts.getOptions().colors[0]
+
+    },
+
+    legend: {
+      align: 'right',
+      layout: 'vertical',
+      margin: 0,
+      verticalAlign: 'top',
+      y: 25,
+      symbolHeight: 280
+
+    },
+
+    tooltip: {
+      formatter: function () {
+        return '<b>' + this.series.xAxis.categories[this.point.x] + '</b>x<b>' + this.series.yAxis.categories[this.point.y] + '</b>: <b>' + this.point.value + '</b><br>'
+
+      }
+
+    },
+
+    series: [{
+      name: "#<%= room.name %>",
+      borderWidth: 1,
+      data: <%= room.coordinates_per_room_chart %>,
+      dataLabels: {
+        enabled: true,
+        color: '#000000'
+
+      }
+
+    }]
+
+  });
+
+});
+  </script>
+
+  <div id="h<%= room.id %>"></div>
+<% end %>
