@@ -1,6 +1,6 @@
 Admin.create!(email: "admin@example.com", password: "admin1", password_confirmation: "admin1")
 
-DATES = [[2016, 8, 4], [2016, 8, 5], [2016, 8, 8], [2016, 8, 9], [2016, 8, 10], [2016, 8, 11], [2016, 8, 12]]
+DATES = [[2016, 8, 11], [2016, 8, 12], [2016, 8, 16], [2016, 8, 17], [2016, 8, 18], [2016, 8, 19], [2016, 8, 22]]
 DAYS = DATES.count
 PERIOD = 5
 

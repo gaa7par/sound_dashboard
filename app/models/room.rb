@@ -28,8 +28,19 @@ class Room < ApplicationRecord
 
     (0...dimension_x).each do |x|
       (0...dimension_y).each do |y|
-        coordinates << [x, y, rand(10)]
+        coordinates << [x, y, 0]
       end
+    end
+    add_recorders_to_chart(coordinates)
+  end
+
+  def add_recorders_to_chart(coordinates)
+    x, y = 0, 0
+
+    recorders.each do |recorder|
+      x = recorder.position_x
+      y = recorder.position_y
+      coordinates << [x, y, 10]
     end
     coordinates
   end
