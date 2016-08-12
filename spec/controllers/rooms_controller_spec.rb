@@ -53,7 +53,7 @@ describe Admin::RoomsController do
     let(:call_request) { post :create, room: attributes }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:room, name: 'Master Builders') }
+      let(:attributes) { attributes_for(:room, name: 'Master Builders', dimension_x: 30, dimension_y: 10) }
 
       it { expect { call_request }.to change { Room.count }.by(1) }
 
@@ -64,11 +64,13 @@ describe Admin::RoomsController do
 
         it { should redirect_to  admin_room_path(room) }
         it { expect(room.name).to eq 'Master Builders' }
+        it { expect(room.dimension_x).to eq 30 }
+        it { expect(room.dimension_y).to eq 10 }
       end
     end
 
     context 'invalid request' do
-      let(:attributes) { attributes_for(:room, name: nil) }
+      let(:attributes) { attributes_for(:room, name: nil, dimension_x: nil, dimension_y: nil) }
 
       it { expect { call_request }.not_to change { Room.count } }
 
@@ -81,13 +83,15 @@ describe Admin::RoomsController do
   end
 
   describe '#update' do
-    let(:room) { create(:room, name: 'Master Builders') }
+    let(:room) { create(:room, name: 'Master Builders', dimension_x: 30, dimension_y: 10) }
     let(:call_request) { put :update, room: attributes, id: room.id }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:room, name: 'Other Room') }
+      let(:attributes) { attributes_for(:room, name: 'Other Room', dimension_x: 20, dimension_y: 20) }
 
       it { expect { call_request }.to change { room.reload.name }.from('Master Builders').to('Other Room') }
+      it { expect { call_request }.to change { room.reload.dimension_x }.from(30).to(20) }
+      it { expect { call_request }.to change { room.reload.dimension_y }.from(10).to(20) }
 
       context 'after request' do
         before { call_request }
@@ -97,9 +101,11 @@ describe Admin::RoomsController do
     end
 
     context 'invalid request' do
-      let(:attributes) { attributes_for(:room, name: nil) }
+      let(:attributes) { attributes_for(:room, name: nil, dimension_x: nil, dimension_y: nil) }
 
       it { expect { call_request }.not_to change { room.reload.name } }
+      it { expect { call_request }.not_to change { room.reload.dimension_x } }
+      it { expect { call_request }.not_to change { room.reload.dimension_y } }
 
       context 'after request' do
         before { call_request }
