@@ -8,7 +8,7 @@
   <%= @room.dimension_x %>x<%= @room.dimension_y %>
 </p>
 
-<%= link_to 'Edit', edit_admin_room_path %>
+<%= link_to 'Edit', edit_admin_room_path(@room) %>
 
 <% @recorders.each do |recorder| %>
   <p>
@@ -18,7 +18,7 @@
   </p>
 <% end %>
 
-<h2>New recorders</h2>
+<h2>New recorder</h2>
 <%= render 'admin/recorders/form' %>
 
 <%= link_to 'Back', admin_rooms_path %>
