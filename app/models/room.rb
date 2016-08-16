@@ -34,6 +34,8 @@ class Room < ApplicationRecord
     add_recorders_to_chart(coordinates)
   end
 
+  private
+
   def add_recorders_to_chart(coordinates)
     x, y = 0, 0
 
