@@ -2,7 +2,7 @@
 <h2>Admins</h2>
 
 <ul>
-  <% @admins.each do |admin| %>
+  <% admins.each do |admin| %>
     <li>
       <%= admin.email %>
       <%= link_to 'Show', admin_path(admin) %>
@@ -12,5 +12,5 @@
   <% end %>
 </ul>
 
-<%= link_to 'New admin', new_admin_path(@admin) %>
+<%= link_to 'New admin', new_admin_path(admin) %>
 <%= link_to 'Back', admin_rooms_path %>

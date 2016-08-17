@@ -1,50 +1,34 @@
 class Admin::RoomsController < ApplicationController
   before_action :authenticate_admin!
 
-  def index
-    @rooms = Room.all
-  end
+  expose :rooms, -> { Room.all }
+  expose :room
 
-  def show
-    @room = Room.find(params[:id])
-
-    @recorder = @room.recorders.new
-    @recorders = @room.recorders.where.not(id: nil)
+  expose :recorders do
+    room.recorders.where.not(id: nil)
   end
-
-  def new
-    @room = Room.new
-  end
-
-  def edit
-    @room = Room.find(params[:id])
-  end
+  expose :recorder
 
   def create
-    @room = Room.new(room_params)
-
-    if @room.save
-      redirect_to [:admin, @room]
+    if room.save
+      redirect_to admin_room_path(room)
     else
-      render 'new'
+      render :new
     end
   end
 
   def update
-    @room = Room.find(params[:id])
-
-    if @room.update(room_params)
-      redirect_to [:admin, @room]
+    if room.update(room_params)
+      redirect_to admin_room_path(room)
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @room = Room.find(params[:id])
-    @room.destroy
+    room.destroy
 
-    redirect_to [:admin, @room]
+    redirect_to admin_rooms_path
   end
 
   private
