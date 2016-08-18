@@ -15,6 +15,14 @@ class Admin::RecordersController < ApplicationController
     end
   end
 
+  def update
+    if recorder.update(recorder_params)
+      redirect_to admin_room_path(room), notice: 'Recorder updated successfully'
+    else
+      render '/admin/rooms/show'
+    end
+  end
+
   def destroy
     recorder.destroy
 
