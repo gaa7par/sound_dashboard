@@ -22,7 +22,7 @@ describe Admin::RoomsController do
       before { call_request }
 
       it { should render_template 'show' }
-      it { expect(assigns(:room)).to eq room }
+      it { expect(controller.room).to eq room }
     end
   end
 
@@ -33,7 +33,7 @@ describe Admin::RoomsController do
       before { call_request }
 
       it { should render_template 'new' }
-      it { expect(assigns(:room).persisted?).to be false }
+      it { expect(controller.room.persisted?).to be false }
     end
   end
 
@@ -45,7 +45,7 @@ describe Admin::RoomsController do
       before { call_request }
 
       it { should render_template 'edit' }
-      it { expect(assigns(:room)).to eq room }
+      it { expect(controller.room).to eq room }
     end
   end
 

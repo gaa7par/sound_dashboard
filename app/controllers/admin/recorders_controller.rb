@@ -1,23 +1,12 @@
 class Admin::RecordersController < ApplicationController
-  expose :rooms, -> { Room.all }
-  expose :room
+  expose(:room, id: :room_id)
 
-  expose :recorders do
-    room.recorders.where.not(id: nil)
-  end
-  expose :recorder
+  expose(:recorders) { room.recorders.where.not(id: nil) }
+  expose(:recorder, attributes: :recorder_params, parent: :room)
 
   def create
     if recorder.save
       redirect_to admin_room_path(room), notice: 'Recorder created successfully'
-    else
-      render '/admin/rooms/show'
-    end
-  end
-
-  def update
-    if recorder.update(recorder_params)
-      redirect_to admin_room_path(room), notice: 'Recorder updated successfully'
     else
       render '/admin/rooms/show'
     end
@@ -30,7 +19,6 @@ class Admin::RecordersController < ApplicationController
   end
 
   private
-
   def recorder_params
     params.require(:recorder).permit(:name, :position_x, :position_y)
   end

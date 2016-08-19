@@ -7,7 +7,7 @@ class Admin::RoomsController < ApplicationController
   expose :recorders do
     room.recorders.where.not(id: nil)
   end
-  expose :recorder
+  expose :recorder, -> { Recorder.new  }
 
   def create
     if room.save

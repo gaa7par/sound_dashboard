@@ -21,7 +21,7 @@ describe AdminsController do
       before { call_request }
 
       it { should render_template 'show' }
-      it { expect(assigns(:admin)).to eq admin }
+      it { expect(controller.admin).to eq admin }
     end
   end
 
@@ -32,7 +32,7 @@ describe AdminsController do
       before { call_request }
 
       it { should render_template 'new' }
-      it { expect(assigns(:admin).persisted?).to be false }
+      it { expect(controller.admin.persisted?).to be false }
     end
   end
 
@@ -44,7 +44,8 @@ describe AdminsController do
       before { call_request }
 
       it { should render_template 'edit' }
-      it { expect(assigns(:admin)).to eq admin }
+      # it { expect(assigns(:admin)).to eq admin }
+      it { expect(controller.admin).to eq admin }
     end
   end
 
