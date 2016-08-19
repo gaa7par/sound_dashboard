@@ -1,14 +1,14 @@
 <h1>Sound Dashboard</h1>
 
 <%= form_tag(root_path, method: :get) do %>
-  <%= date_field_tag 'date', default_date(@date) %>
+  <%= date_field_tag 'date', default_date(date) %>
   <%= submit_tag 'Select' %>
 <% end %>
 
 <%= link_to 'Yesterday', root_path(date: 'yesterday') %>
 <%= link_to 'Today', root_path(date: 'today') %>
 
-<%= render partial: 'day_chart', locals: { date: @date } %>
+<%= render partial: 'day_chart', locals: { date: date } %>
 <%= render 'heat_map' %>
 
 <%= link_to 'Sign in', admin_rooms_path %>
