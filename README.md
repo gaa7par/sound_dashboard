@@ -19,3 +19,7 @@
   rails db:migrate<br />
   rails db:seed<br />
 </p>
+<p>
+  <strong>URL</strong><br />
+  <a href="http://sound-dashboard.herokuapp.com/">click</a>
+</p>
