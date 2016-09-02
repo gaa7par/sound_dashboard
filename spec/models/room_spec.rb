@@ -9,7 +9,7 @@ RSpec.describe Room do
     let(:room) { create(:room) }
     let(:recorder_1) { create(:recorder, room: room) }
 
-    context 'many recoreders exists' do
+    context 'many recorders exists' do
       let(:recorder_2) { create(:recorder, room: room) }
       before do
         create(:measurement, recorder: recorder_1, time: Time.now.beginning_of_day+8.hours, measure: 10)
